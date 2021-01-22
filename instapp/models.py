@@ -16,4 +16,11 @@ class Post(models.Model):
     user = models.ForeignKey(User,on_delete=models.CASCADE)
     profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null = True)
     like = models.IntegerField(default=0)
-
+class Comment(models.Model):
+    comment= models.CharField(max_length =240)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
+        )
+    user = models.ForeignKey(User,on_delete=models.CASCADE)

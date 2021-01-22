@@ -18,7 +18,7 @@ Umutesi Nadine
 -Postgressql<br>
 
 ## Setup/installation
-$ git clone <br>
+$ git clone https://github.com/umunadine/instapp.git <br>
 $ cd Instapp <br>
 $ source virtual/bin/activate <br>
 $ install all dependencies that will create an environment for the app to run by running the command pip3 install -r requirements.txt <br>

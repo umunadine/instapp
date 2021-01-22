@@ -6,27 +6,14 @@ from django.contrib.auth.models import User
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE,null=True)
     profile_photo= models.ImageField(upload_to='profiles/',null=True)
-    bio= models.CharField(max_length=140, null=True)
+    bio= models.CharField(max_length=100, null=True)
 
-
-    def save_profile(self):
-        self.save()
-
-    @classmethod
-    def get_profile(cls, user):
-        profile = cls.objects.filter(user=user).first()
-        return profile
-
-    @classmethod
-    def get_profile_id(cls, user):
-        profile = cls.objects.get(pk =user)
-        return profile
-
-    @classmethod
-    def find_profile(cls,search_term):
-        profile = Profile.objects.filter(user__username__icontains=search_term)
-        return profile
-
-    class Meta:
-        ordering = ['user']
+class Post(models.Model):
+    post_image = models.ImageField(upload_to = 'posts/')
+    caption = models.CharField(max_length =240)
+    location = models.CharField(max_length =30)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null = True)
+    like = models.IntegerField(default=0)
 
